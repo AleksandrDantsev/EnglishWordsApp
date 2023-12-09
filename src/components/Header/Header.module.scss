@@ -1,0 +1,31 @@
+.header {
+    height: 75px;
+    width: 100%;
+    box-shadow: 0 2px 10px 0 rgb(224, 224, 224);
+}
+
+.wrapper_header {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    line-height: 75px;
+    margin: 0 auto;
+}
+.header_home {
+
+}
+.header_buttons {
+
+}
+.links {
+    display: flex;
+    a {
+        padding: 12px 20px;
+        border: solid 1px rgb(202, 202, 202);
+        margin-left: 10px;
+        transition-duration: 200ms;
+        &:hover {
+            border-color: #333333;
+        }
+    }
+}

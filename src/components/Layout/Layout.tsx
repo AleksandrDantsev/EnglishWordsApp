@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import st from "./Layout.module.scss";
 import { Outlet } from "react-router-dom"
+import Header from "../Header/Header";
+
 
 const Layout:React.FC  = () => {
     return(
-        <main>
-            <Outlet />
-        </main>
+        <Fragment>
+            <Header />
+            <main>
+                <Outlet />
+            </main>
+        </Fragment>
     );
 }
 

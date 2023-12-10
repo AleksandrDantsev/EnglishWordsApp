@@ -1,0 +1,24 @@
+.menuCard {
+    width: calc(90% / 3);
+    margin: 10px 1%;
+    padding: 25px;
+    min-height: 220px;
+    box-shadow: 0 1px 11px 0 rgb(206, 206, 206);
+    transition-duration: 150ms;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.06);
+    }
+}
+.menuCard_wrapper {
+    text-align: center;
+}
+.logo {
+    padding: 10px 0;
+}
+.name {
+    font-size: 18px;
+}
+.description {
+    margin: 10px 0;
+}

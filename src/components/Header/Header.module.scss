@@ -1,18 +1,28 @@
 .header {
-    height: 75px;
+    height: 80px;
     width: 100%;
-    box-shadow: 0 2px 10px 0 rgb(224, 224, 224);
+    box-shadow: 0 2px 8px 0 rgb(231, 231, 231)
 }
 
 .wrapper_header {
     display: flex;
     justify-content: space-between;
-    width: 65%;
-    line-height: 75px;
+    width: 67%;
+    line-height: 80px;
     margin: 0 auto;
 }
 .header_home {
-
+    padding: 0 15px;
+    max-height: 60px;
+    transform: translateY(9px);
+    cursor: pointer;
+    transition-duration: 100ms;
+    &:hover {
+        svg {
+            fill: #186183;
+        }
+    }
+    
 }
 .header_buttons {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import st from "./HomePage.module.scss";
-
+import { Link } from "react-router-dom";
 
 const HomePage:React.FC  = () => {
     return(
@@ -10,7 +10,7 @@ const HomePage:React.FC  = () => {
                     <span className={st.home_first_title}>Learn</span>
                     <span className={st.home_second_title}>English</span>
                     <span className={st.home_three_title}>effectively</span>
-                    <button className={st.home_bt_gt_st} type="button">Get started</button>
+                    <Link to="menuApp"><button className={st.home_bt_gt_st} type="button">Get started</button></Link>
                 </aside>
                 <div className={st.home_image}>
                     <div className={st.home_picture}>

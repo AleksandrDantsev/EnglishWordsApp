@@ -8,6 +8,21 @@
   border: 0;
   outline: 0;
   font-family: 'Archivo', sans-serif;
-
+  box-sizing: border-box;
 }
 
+#root,
+html,
+body, 
+main {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}

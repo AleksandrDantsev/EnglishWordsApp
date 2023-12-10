@@ -17,7 +17,7 @@
     margin-right: 3%;
     span {
         display: block;
-        
+        text-shadow: 0 1px 2px rgb(77, 77, 77);
         font-weight: 600;
     }
 }
@@ -55,16 +55,16 @@
 }
 
 .home_bt_gt_st {
-    width: 50%;
-    height: 50px;
+    width: 60%;
+    height: 55px;
     min-width: 150px;
     margin-top: 15px;
     background-color: #fff;
-    border: solid 2px rgb(121, 121, 121);
+    border: solid 1px rgb(58, 58, 58);
     transition-duration: 200ms;
     letter-spacing: 1px;
     cursor: pointer;
     &:hover {
-        box-shadow: 0 1px 10px 0 rgb(184, 184, 184);
+        box-shadow: 0 0 3px 0 rgb(184, 184, 184);
     }
 }

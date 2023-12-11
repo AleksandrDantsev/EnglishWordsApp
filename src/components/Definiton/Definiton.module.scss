@@ -1,6 +1,23 @@
 .definiton {
     margin: 15px 0 10px 10px;
+    transition-duration: 2s;
+    transform: translateY(12%);
+    opacity: 0;
 }
+.animationShiftloaded {
+    animation: animationShift 1.2s ease forwards;
+}
+
+@keyframes animationShift {
+    0% {
+        transform: translateY(12%);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .titleGrammar {
     font-size: 16px;
     text-transform: capitalize;

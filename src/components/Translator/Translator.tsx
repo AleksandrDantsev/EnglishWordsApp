@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import st from "./Translator.module.scss";
 import axios from "axios";
 import Definiton from "../Definiton/Definiton";
@@ -6,17 +6,24 @@ import { Phonetik, ArrayApiWord } from "./types";
 
 const Translator:React.FC = () => {
     const [wordSearch, setWordSearch] = useState<string>('');
-    const [resultQuery, setResultQuery] = useState<ArrayApiWord>();
+    const [resultQuery, setResultQuery] = useState<ArrayApiWord | null>();
     const [audioString, setAudio] = useState<Phonetik[]>([]);
+    const [loadingAnimation, setLoadingAnimation] = useState<boolean>(false);
+    const [notfoundError, setNotFoundError] = useState<boolean>(false);
 
-    const  searchBtWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const searchBtWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        setLoadingAnimation(true);
         setWordSearch('');
-        axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch.toLowerCase().trim()}`)
-             .then(data => {
+        await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch.toLowerCase().trim()}`)
+            .then(data => {
                 setResultQuery(data.data[0]);
-                setAudio(data.data[0].phonetics.filter((el: Phonetik) => el.audio != ''))
+                setAudio(data.data[0].phonetics.filter((el: Phonetik) => el.audio != ''))})
+            .catch(() => {
+                setNotFoundError(true); 
+                setResultQuery(null);
             });
+        setLoadingAnimation(false);
         }
         
         const playAudio = (e: React.MouseEvent<HTMLOrSVGElement>) => {
@@ -45,7 +52,7 @@ const Translator:React.FC = () => {
                         <ul  className={st.listenWord}>
                             {
                                 audioString.map((el: Phonetik, id:number) => <li key={el["text"] + id}>
-                                <span key={el["text"]} className={st.transcription}>[ {el["text"].match(/[^"/"]/g)!.join('')} ]</span>
+                                <span key={el["text"]} className={st.transcription}> {`[ ${el["text"]} ]`} </span>
                                 <svg className={st.svgAudio} id={String(id)} onClick={playAudio} 
                                 fill="#545454" 
                                 version="1.1" 
@@ -66,24 +73,33 @@ const Translator:React.FC = () => {
                     </div>
                 }
             </div>
-                {resultQuery?.meanings &&
-                <div className={st.definiton}>
-                    <h2 className={st.titleDefntion}>Definition</h2>
-                    <Definiton typeDef={'noun'} data={resultQuery} typeSearch={"definition"}/>
-                    <Definiton typeDef={'adjective'} data={resultQuery} typeSearch={"definition"}/>
-                    <Definiton typeDef={'verb'} data={resultQuery} typeSearch={"definition"}/>
-                    <Definiton typeDef={'adverb'} data={resultQuery} typeSearch={"definition"}/>
-                </div>
+            <div className={st.resultSearch}>
+                {loadingAnimation ? 
+                <div className={st.loadedAnimationApi}>
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>   : 
+                <Fragment>
+                    {resultQuery?.meanings ?
+                    <Fragment>
+                    <div className={st.definiton}>
+                        <h2 className={st.titleDefintion}>Definition</h2>
+                        <Definiton typeDef={'noun'} data={resultQuery} typeSearch={"definition"} loadingAnimation={loadingAnimation}/>
+                        <Definiton typeDef={'adjective'} data={resultQuery} typeSearch={"definition"} loadingAnimation={loadingAnimation}/>
+                        <Definiton typeDef={'verb'} data={resultQuery} typeSearch={"definition"} loadingAnimation={loadingAnimation}/>
+                        <Definiton typeDef={'adverb'} data={resultQuery} typeSearch={"definition"} loadingAnimation={loadingAnimation}/>
+                    </div>
+                    <div className={st.definiton}>
+                        <h2 className={st.titleDefintion}>Examples</h2>
+                        <Definiton typeDef={'noun'} data={resultQuery} typeSearch={"example"} loadingAnimation={loadingAnimation}/>
+                        <Definiton typeDef={'adjective'} data={resultQuery} typeSearch={"example"} loadingAnimation={loadingAnimation}/>
+                        <Definiton typeDef={'verb'} data={resultQuery} typeSearch={"example"} loadingAnimation={loadingAnimation}/>
+                    </div> 
+                    </Fragment> :
+                    <div className={notfoundError ? st.emptyTranslatorSearch : st.emptyTranslatorSearch + ' ' + st.errorSearc}>{notfoundError ? "Request not found (" : "Enter a word"}</div>
                 }
-                {resultQuery?.meanings &&
-                <div className={st.examples}>
-                    <h2 className={st.titleDefntion}>Examples</h2>
-                    <Definiton typeDef={'noun'} data={resultQuery} typeSearch={"example"}/>
-                    <Definiton typeDef={'adjective'} data={resultQuery} typeSearch={"example"}/>
-                    <Definiton typeDef={'verb'} data={resultQuery} typeSearch={"example"}/>
-                </div>
-            
+                </Fragment>
             }
+            </div>
         </div>
     );
 }

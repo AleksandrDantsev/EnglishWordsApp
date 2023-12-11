@@ -1,17 +1,24 @@
 .menuCard {
     width: calc(90% / 3);
     margin: 10px 1%;
-    padding: 25px;
     min-height: 220px;
-    box-shadow: 0 1px 11px 0 rgb(206, 206, 206);
+    box-shadow: 0 1px 11px 0 rgba(216, 216, 216, 0.788);
     transition-duration: 150ms;
     cursor: pointer;
     &:hover {
         transform: scale(1.06);
     }
+    a {
+        display: inline-block;
+        padding: 25px;
+        height: 100%;
+        width: 100%;
+    }
 }
 .menuCard_wrapper {
     text-align: center;
+    color: #333333;
+    
 }
 .logo {
     padding: 10px 0;
@@ -21,4 +28,5 @@
 }
 .description {
     margin: 10px 0;
+    color: #a1a1a1;
 }

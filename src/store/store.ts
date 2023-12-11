@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import dictionary from './reducers/dictionary'; 
 
 const store = configureStore({
     reducer: {
-    
+      dictionary
     },
   })
 

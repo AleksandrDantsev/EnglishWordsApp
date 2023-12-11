@@ -1,0 +1,100 @@
+.translator {
+    width: 65%;
+    margin: 50px auto;
+    padding-bottom: 50px;
+}
+.translator_inputRes {
+    display: flex;
+}
+.translator_form {
+    width: 60%;
+    form {
+        display: flex;
+        margin-right: 15px;
+    }
+}
+
+.translator_word_search {
+    width: 130px;
+    margin-left: 15px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(241, 241, 241);
+    }
+}
+.translator_word {
+    height: 45px;
+    width: 100%;
+    font-size: 15px;
+    padding: 0 15px;
+    text-transform: capitalize;
+    border: solid 1px rgb(202, 202, 202);
+}
+.result {
+    display: flex;
+    width: 40%;
+    text-align: center;
+    font-size: 35px;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.listenWord {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    li {
+        display: flex;
+        justify-content: space-between;
+        white-space: nowrap;
+        width: auto;
+        line-height: 47px;
+        height: 40px;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        left: 0;
+        top: 40px;
+        bottom: 0;
+        background-color: #ffffff;
+        transition-duration: 800ms;
+        box-shadow: 0 -2px 13px 0 #ffffff;
+        transition-delay: 400ms;
+    }
+    &:hover {
+        &::after {
+            content: '';
+            left: 0;
+            top: 100%;
+        }
+    }
+}
+
+.transcription {
+    font-size: 22px;
+    color: rgb(83, 83, 83);
+    
+}
+
+.definiton {
+    margin-top: 30px;
+}
+
+.titleDefntion {
+    font-size: 21px;
+}
+
+.foundedWord {
+    flex-grow: 1;
+}
+
+.svgAudio {
+    width: 30%;
+    height: 100%;
+    cursor: pointer;
+    padding: 8px;
+}

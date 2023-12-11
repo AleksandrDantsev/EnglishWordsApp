@@ -4,7 +4,10 @@ import { Fragment } from 'react'
 import './App.scss'
 import Layout from './components/Layout/Layout';
 import HomePage from './components/HomePage/HomePage';
-const Menu = lazy(() => import("./components/Menu/Menu"));
+// const Menu = lazy(() => import("./components/Menu/Menu"));
+// const Translator = lazy(() => import("./components/Translator/Translator"));
+import Menu from './components/Menu/Menu';
+import Translator from './components/Translator/Translator';
 
 const App:React.FC  = () => {
   return (
@@ -13,6 +16,9 @@ const App:React.FC  = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}/>
           <Route path="menuApp" element={<Menu />}/>
+          
+          <Route path="translator" element={<Translator />}/>
+
         </Route>
       </Routes>
     </Fragment>

@@ -1,0 +1,22 @@
+.definiton {
+    margin: 15px 0 10px 10px;
+}
+.titleGrammar {
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+.rowDef {
+    line-height: 30px;
+    li {
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 20px;
+            border-radius: 2px;
+            background-color: #707070;
+        }
+    }
+}

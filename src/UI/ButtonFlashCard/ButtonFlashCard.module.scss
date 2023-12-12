@@ -1,0 +1,19 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    min-height: 65px;
+    box-shadow: 0 0 10px 0 rgb(189, 189, 189);
+    margin: 15px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition-duration: 250ms;
+    &:hover {
+        transform: scale(1.05);
+    }
+    span {
+        display: flex;
+        align-items: center;
+    }
+}

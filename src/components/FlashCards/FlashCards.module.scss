@@ -26,12 +26,15 @@
 .falshCardActionPanel {
     position: absolute;
     display: flex;
-    top: 45px;  
-    right: 37px;
+    top: 30px;  
+    right: 20px;
 }
 
 .flasCardSoundBt,
 .flasCardEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
     height: 30px;
     background-color: #fff;
@@ -77,16 +80,23 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
-    li {
-        width: 65px;
-        min-height: 65px;
-        box-shadow: 0 0 10px 0 rgb(189, 189, 189);
-        margin: 15px 5px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition-duration: 250ms;
-        &:hover {
-            transform: scale(1.05);
-        }
+}
+
+.falschCard_inputWord {
+    width: 50%;
+    min-width: 200px;
+    margin: 30px auto;
+    input {
+        height: 48px;
+        width: 100%;
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 25px;
+        font-weight: 600;
+        letter-spacing: 8px;
+        color:rgb(44, 44, 44);
+        text-transform: uppercase;
+        text-align: center;
+        box-shadow: 0 0 5px 0 rgb(163, 163, 163);
     }
 }

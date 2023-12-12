@@ -95,7 +95,7 @@ const Translator:React.FC = () => {
                         <Definiton typeDef={'verb'} data={resultQuery} typeSearch={"example"} loadingAnimation={loadingAnimation}/>
                     </div> 
                     </Fragment> :
-                    <div className={notfoundError ? st.emptyTranslatorSearch : st.emptyTranslatorSearch + ' ' + st.errorSearc}>{notfoundError ? "Request not found (" : "Enter a word"}</div>
+                    <div className={notfoundError ? st.emptyTranslatorSearch : st.emptyTranslatorSearch + ' ' + st.errorSearc}>{notfoundError ? "Word not found (" : "Enter a word"}</div>
                 }
                 </Fragment>
             }

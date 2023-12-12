@@ -11,7 +11,7 @@ export const infoMenuCardArray:infoCard = {
     fleshCards: {
         name: "Flashcards",
         description: "Learn words from flashcards",
-        link: "fleshcards",
+        link: "flashcards",
         logo: <svg viewBox="0 0 24 24" width="66px" height="64px" role="img" aria-labelledby="cardsIconTitle" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="cardsIconTitle">Cards</title> <rect width="13" height="13" x="3" y="3"></rect> 
         <polyline points="16 8 21 8 21 21 8 21 8 16"></polyline> </g></svg>
     },

@@ -8,6 +8,7 @@ import HomePage from './components/HomePage/HomePage';
 // const Translator = lazy(() => import("./components/Translator/Translator"));
 import Menu from './components/Menu/Menu';
 import Translator from './components/Translator/Translator';
+import FlashCards from './components/FlashCards/FlashCards';
 
 const App:React.FC  = () => {
   return (
@@ -16,9 +17,8 @@ const App:React.FC  = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}/>
           <Route path="menuApp" element={<Menu />}/>
-          
           <Route path="translator" element={<Translator />}/>
-
+          <Route path="flashcards" element={<FlashCards />}/>
         </Route>
       </Routes>
     </Fragment>

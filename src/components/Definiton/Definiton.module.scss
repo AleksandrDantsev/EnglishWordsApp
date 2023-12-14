@@ -1,11 +1,11 @@
 .definiton {
     margin: 15px 0 10px 10px;
     transition-duration: 2s;
-    transform: translateY(12%);
+    transform: translateY(8%);
     opacity: 0;
 }
 .animationShiftloaded {
-    animation: animationShift 1.2s ease forwards;
+    animation: animationShift 900ms ease forwards;
 }
 
 
@@ -31,7 +31,7 @@
 
 @keyframes animationShift {
     0% {
-        transform: translateY(12%);
+        transform: translateY(8%);
     }
     100% {
         transform: translateY(0);

@@ -6,7 +6,7 @@ const Header: React.FC = () => {
     return (
         <header className={st.header}>
             <div className={st.wrapper_header}>
-                <Link to="/">
+                <Link to="/menuApp">
                 <div className={st.header_home}>
                     <svg
                         fill="#5c5c5c"

@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import st from "./FlashCards.module.scss";
 import ButtonFlashCard from "../../UI/ButtonFlashCard/ButtonFlashCard";
-import Definiton from "../Definiton/Definiton";
+import { useAppSelector } from "../../hooks/reduxToolkit";
 
 const FlashCards: React.FC = () => {
+    const [countCard, setCountCard] = useState<nubmer>(0);
+    const queueCard = useAppSelector(state => state.flashcards.listCard);
 
     const playPronounceWord = () => {
         console.log('d')
+        console.log(queueCard)
+    }
+
+    const nextCard = () => {
+        setCountCard((prev: number) => prev + 1);
     }
 
     return (
@@ -14,7 +21,7 @@ const FlashCards: React.FC = () => {
             <div className={st.flashCardsTop}>
                 <div className={st.flashCard_picture}>
                     <img
-                        src="https://avatars.dzeninfra.ru/get-zen_doc/1930771/pub_5cda4f1cc9c89500afe9500f_5cda55687a7fdb0349671c80/scale_1200"
+                        src={queueCard[countCard].imageChoise}
                         alt="picterCard"
                     />
                     <div className={st.falshCardActionPanel}>
@@ -73,7 +80,7 @@ const FlashCards: React.FC = () => {
                         />
                         <ButtonFlashCard svgName={"show"} title={"Show word"} />
                         <ButtonFlashCard svgName={"pass"} title={"Check"} />
-                        <ButtonFlashCard svgName={"next"} title={"Next word"} />
+                        <ButtonFlashCard onclick={nextCard} svgName={"next"} title={"Next word"} />
                     </ul>
                 </div>
             </div>

@@ -20,7 +20,7 @@ export const infoMenuCardArray:infoCard = {
         description: "Remember old words, add new words and learn them",
         link: "dictionary",
         logo: <svg height="64px" width="64px" version="1.1" id="_x32_" viewBox="0 0 512 512" fill="#333333" 
-        stroke="#333333"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" 
+        stroke="#333333"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g
         strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> 
         </style> <g> <path d="M511.414,217.728c-1.902-9.034-8.242-16.503-16.852-19.856l-30.197-11.736v31.046l5.718,2.223 c2.58,1.008,4.483,3.25,5.048,5.953c0.565,2.712-0.263,5.538-2.223,7.497L279.14,426.609c-3.834,3.824-9.561,5.03-14.62,3.071 l-43.064-16.748v31.046l30.226,11.755c17.18,6.678,36.678,2.581,49.715-10.454l202.594-202.59 C510.519,236.161,513.317,226.77,511.414,217.728z"></path> <path d="M30.914,299.684c1.356-18.895,7.423-43.649,28.466-42.481l192.2,74.751 c17.228,6.698,36.782,2.553,49.818-10.558l185.771-186.991c6.5-6.538,9.269-15.919,7.357-24.933 c-1.912-9.023-8.242-16.474-16.832-19.809L286.666,15.374c-17.228-6.698-36.791-2.553-49.818,10.559L21.646,242.538 C4.625,256.545,0,282.664,0,305.863c0,23.2,1.545,51.043,27.844,61.866l-6.198-1.451l57.942,22.532v-20.742 c0-3.372,0.42-6.668,1.107-9.88l-38.94-15.147C29.37,338.35,29.36,321.499,30.914,299.684z"></path> <path d="M111.048,352.658c-4.088,4.107-6.381,9.645-6.381,15.41v96.076l40.823-8.741l50.888,44.383v-96.048 c0-5.793,2.298-11.331,6.386-15.419l16.272-16.276l-91.706-35.662L111.048,352.658z"></path> </g> </g></svg>
     },
@@ -35,7 +35,7 @@ export const infoMenuCardArray:infoCard = {
     },
     createFlashCard: {
         name: "Create flashcards",
-        link: "createfleshcards",
+        link: "createflashcards",
         description: "Create flashcards to learn words",
         logo: <svg width="80px" height="80px" viewBox="0 0 21 21" fill="#333333" stroke="#333333"><g strokeWidth="0"></g><g strokeLinecap="round" strokeLinejoin="round"></g><g> <g fill="none" fillRule="evenodd" stroke="#333333" strokeLinecap="round" strokeLinejoin="round" transform="translate(3 3)"> <path d="m7 1.5h-4.5c-1.1045695 0-2 .8954305-2 2v9.0003682c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-4.5003682"></path> <path d="m14.5.46667982c.5549155.5734054.5474396 1.48588056-.0167966 2.05011677l-6.9832034 6.98320341-3 1 1-3 6.9874295-7.04563515c.5136195-.5178979 1.3296676-.55351813 1.8848509-.1045243z"></path> <path d="m12.5 2.5.953 1"></path> </g> </g></svg>
     } 

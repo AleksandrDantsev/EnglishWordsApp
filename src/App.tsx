@@ -9,6 +9,7 @@ import HomePage from './components/HomePage/HomePage';
 import Menu from './components/Menu/Menu';
 import Translator from './components/Translator/Translator';
 import FlashCards from './components/FlashCards/FlashCards';
+import CreateFlashCards from './components/CreateFlashCards/CreateFlashCards';
 
 const App:React.FC  = () => {
   return (
@@ -19,6 +20,7 @@ const App:React.FC  = () => {
           <Route path="menuApp" element={<Menu />}/>
           <Route path="translator" element={<Translator />}/>
           <Route path="flashcards" element={<FlashCards />}/>
+          <Route path="createflashcards" element={<CreateFlashCards />}/>
         </Route>
       </Routes>
     </Fragment>

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import dictionary from './reducers/dictionary'; 
+import flashcards from './reducers/flashcards';
 
 const store = configureStore({
     reducer: {
-      dictionary
+      dictionary,
+      flashcards
     },
   })
 

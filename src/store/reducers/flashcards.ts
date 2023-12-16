@@ -5,6 +5,7 @@ type FlashCardList = {
     image: string;
     description: string;
     imageChoise: string;
+    url?: string;
 };
 
 type list = {

@@ -4,23 +4,44 @@
 }
 .flashCardsTop {
     display: flex;
-    height: calc(100vh / 1.7);
+    height: calc(100vh / 1.5);
     min-height: 450px;
+    transition-duration: 1200ms;
+    transition-delay: 1.2s;
+    
 }
 .flashCard_picture {
     position: relative;
     width: 75%;
     margin: 0 auto;
-    padding: 7px;
+    padding: 9px;
     box-shadow: 0 1px 13px 0 rgb(197, 197, 197);
     border-radius: 2px;
+    transition-duration: 400ms;
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 3px;
-        object-position: 50% 5%;
+        object-position: 50% 20%;
     }
+}
+
+.rightAnwser {
+    background-color: rgba(63, 221, 63, 0.863);
+    border-radius: 5px;
+}
+
+.wrongAnwser {
+    background-color: rgba(236, 13, 13, 0.822);
+}
+
+.hint {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: rgb(110, 110, 110);
+    font-weight: 400;
 }
 
 .falshCardActionPanel {
@@ -60,14 +81,14 @@
 
 .falschCard_word {
     text-align: center;
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 600;
-    margin: 20px 0;
+    margin: 40px 0;
     text-transform: uppercase;
 }
 
 .falschCard_definitionExamples {
-    
+    margin-bottom: 100px;
 }
 
 .flashCard_buttonRightCard {

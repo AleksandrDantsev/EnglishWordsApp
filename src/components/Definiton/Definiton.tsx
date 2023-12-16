@@ -5,7 +5,7 @@ interface CheckInputData {
     typeDef: string;
     data: any;
     typeSearch: string;
-    loadingAnimation: boolean;
+    loadingAnimation?: boolean;
 }
 
 type Meanings = {
@@ -23,7 +23,9 @@ type DefinitionType = {
 
 
 const Definiton:React.FC<CheckInputData> = memo((props) => {
+    console.log(props)
     const filterData = useMemo(() => props.data.meanings?.find((obj: Meanings) => obj["partOfSpeech"] == props.typeDef), [props.data]);
+    console.log(filterData)
     return( 
         <Fragment>  
             {

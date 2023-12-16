@@ -15,21 +15,25 @@ const Translator:React.FC = () => {
         e.preventDefault();
         setLoadingAnimation(true);
         setWordSearch('');
-        await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch.toLowerCase().trim()}`)
-            .then(data => {
-                setResultQuery(data.data[0]);
-                setAudio(data.data[0].phonetics.filter((el: Phonetik) => el.audio != ''))})
-            .catch(() => {
-                setNotFoundError(true); 
-                setResultQuery(null);
-            });
+        try {
+            await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch.toLowerCase().trim()}`)
+                .then(data => {
+                    setResultQuery(data.data[0]);
+                    setAudio(data.data[0].phonetics.filter((el: Phonetik) => el.audio != ''))})
+                .catch(() => {
+                    setNotFoundError(true); 
+                    setResultQuery(null);
+                });
+        }
+        catch(err) {
+            setNotFoundError(true); 
+        }
         setLoadingAnimation(false);
         }
         
         const playAudio = (e: React.MouseEvent<HTMLOrSVGElement>) => {
         e.stopPropagation();
         const target = e.target as HTMLElement;
-        console.log(audioString)
         const audio = new Audio(audioString[Number(target.id)].audio);
         audio.play();
     }

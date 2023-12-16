@@ -14,11 +14,10 @@
     text-transform: capitalize;
     font-weight: 600;
     font-size: 18px;
-    a {
-        color: #424242;
-        padding: 5px;
-    }
+    cursor: pointer;
+    color: #424242;
 }
+
 .wordTitle {
     display: flex;
     align-items: center;

@@ -1,0 +1,35 @@
+.sideBardDesc {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 60vw;
+    box-shadow: 0 0 15px 0#eeeeee;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.hideDescBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 90px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 rgb(204, 204, 204);
+    transform: translateX(-50%);
+    cursor: pointer;
+    svg {
+        display: inline-block;
+    }
+}
+
+.sidebarWrapper {
+    padding: 40px;
+    padding-top: 20px;
+}

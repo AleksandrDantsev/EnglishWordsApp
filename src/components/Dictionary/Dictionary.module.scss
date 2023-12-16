@@ -1,7 +1,18 @@
 .wrapperDictionary {
-    width: 65%;
+    width: 80%;
     margin: 40px auto;
 }
 .dictionaryCards {
    padding: 20px;
+}
+
+.inputSearcWord {
+    width: 25%;
+    min-width: 200px;
+    margin: 10px 0 0 18px;
+    height: 40px;
+    padding: 0 20px;
+    color: rgb(83, 83, 83);
+    border-radius: 10px;
+    box-shadow: 0 0 6px 0 #d1d1d1;
 }

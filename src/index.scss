@@ -26,3 +26,8 @@ main {
 main {
   flex-grow: 1;
 }
+
+::selection {
+  background-color: #ebe3e3;
+  color: #000;
+}

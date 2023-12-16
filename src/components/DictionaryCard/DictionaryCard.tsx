@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from "react";
+import React, { useState, useMemo, memo } from "react";
 import st from "./DictionaryCard.module.scss";
 import { Link } from "react-router-dom";
 
@@ -6,10 +6,12 @@ interface IDictCard {
     word: string;
     audio: Array<{ audio: string }>;
     phonetic: string;
+    definition: string;
 }
 
-const DictionaryCard: React.FC<IDictCard> = memo(
-    ({ word, audio, phonetic }) => {
+const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, definition }) => {
+        const [isSoundPlay, setIsSoundPlay] = useState<boolean>(false);
+
         const wordPronunciation = useMemo(() => {
             for (let i = 0; i < audio.length; i++) {
                 if (audio[i].audio.endsWith("us.mp3")) return audio[i];
@@ -18,18 +20,24 @@ const DictionaryCard: React.FC<IDictCard> = memo(
         }, []);
 
         const playSoundPronunciation = () => {
-            new Audio(wordPronunciation.audio).play();
+            setIsSoundPlay(true);
+            const audio =  new Audio(wordPronunciation.audio);
+            audio.play();
+            audio.onended = () => setIsSoundPlay(false);
         }
 
         return (
             <div className={st.dictioanryCard}>
-                <div className={st.word}><Link to="">{word}</Link></div>
+                <div className={st.wordTitle}>
+                    <div className={st.word}><Link to="">{word}</Link></div>
+                    {phonetic && <div className={st.transcription}>{phonetic}</div>}
+                </div>
                 <div className={st.phonetics}>
-                    <div className={st.transcription}>{phonetic}</div>
-                    {
-                    wordPronunciation.audio &&
+                    <div className={st.def}>{definition}</div>
                     <div onClick={playSoundPronunciation} className={st.audioWord}>
-                        <svg 
+                    {
+                        wordPronunciation.audio &&
+                        <svg className={isSoundPlay ? st.animationSoundPlayClass : ''} 
                             width="30px"
                             height="30px"
                             viewBox="-0.5 0 25 25"
@@ -66,8 +74,9 @@ const DictionaryCard: React.FC<IDictCard> = memo(
                                 ></path>{" "}
                             </g>
                         </svg>
-                    </div>
                     }
+                    </div>
+                   
                 </div>
             </div>
         );

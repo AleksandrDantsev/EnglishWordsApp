@@ -108,7 +108,7 @@ const FlashCards: React.FC = () => {
                     />
                     <div className={st.falshCardActionPanel}>
                         {
-                        Boolean(serverWordInfo?.phonetics.filter((el: Phonetik) => el.audio != '')[0].audio) &&
+                        Boolean(serverWordInfo?.phonetics.filter((el: Phonetik) => el.audio != '')[0]?.audio) &&
                         <div onClick={playPronounceWord} className={st.flasCardSoundBt}>
                         <svg
                             fill="#404040"

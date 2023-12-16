@@ -13,14 +13,22 @@
         margin-right: 15px;
     }
 }
-
+.countryPron {
+    font-size: 15px;
+    margin: 0 15px;
+    color: #ce3434;
+}
 .translator_word_search {
     width: 130px;
     margin-left: 15px;
     background-color: #e6e6e6;
     cursor: pointer;
+    transition-duration: 100ms;
     &:hover {
-        background-color: rgb(241, 241, 241);
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 rgba(192, 192, 192, 0.712);
+        background-color: rgb(196, 56, 56);
     }
 }
 .translator_word {

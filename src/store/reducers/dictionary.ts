@@ -4,8 +4,11 @@ interface IWordInfo {
     word: string;
     phonetic: string;
     phonetics: [];
-    meanings: [];
+    meanings: TDefinition[];
 }
+type TDefinition = {
+    definitions: Array<{definition: string}>
+};
 
 type TInitialState = {
     dictionaryList: IWordInfo[]
@@ -23,7 +26,7 @@ const dictionary = createSlice({
     initialState,
     reducers: {
         addWordToDictionary(state, action) {
-            if (!state.dictionaryList.find(el => el.word == action.payload)) {
+            if (!state.dictionaryList.find(el => el.word == action.payload.word)) {
                 state.dictionaryList.push(action.payload);
             }
         },

@@ -29,6 +29,7 @@ const Translator:React.FC = () => {
         const playAudio = (e: React.MouseEvent<HTMLOrSVGElement>) => {
         e.stopPropagation();
         const target = e.target as HTMLElement;
+        console.log(audioString)
         const audio = new Audio(audioString[Number(target.id)].audio);
         audio.play();
     }
@@ -52,7 +53,8 @@ const Translator:React.FC = () => {
                         <ul  className={st.listenWord}>
                             {
                                 audioString.map((el: Phonetik, id:number) => <li key={el["text"] + id}>
-                                <span key={el["text"]} className={st.transcription}> {`[ ${el["text"]} ]`} </span>
+                                <span key={el["text"]} className={st.transcription}> {`[ ${el["text"] || ''} ]`} 
+                                <span className={st.countryPron}>{el.audio.endsWith("us.mp3") ? "us" : el.audio.endsWith("uk.mp3") ? 'uk' : "au"  }</span> </span>
                                 <svg className={st.svgAudio} id={String(id)} onClick={playAudio} 
                                 fill="#545454" 
                                 version="1.1" 

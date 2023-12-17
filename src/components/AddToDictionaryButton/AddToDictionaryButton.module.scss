@@ -1,0 +1,14 @@
+.addToDict {
+    position: fixed;
+    bottom: 50px;
+    right: 60px;
+    box-shadow: 0 0 8px 0 rgb(179, 179, 179);
+    padding: 16px;
+    border-radius: 30%;
+    cursor: pointer;
+    transition-duration: 500ms;
+    &:hover {
+        box-shadow: 0 0 12px 0 rgb(163, 163, 163);
+    }
+}
+

@@ -1,0 +1,19 @@
+.audioWord {
+    min-width: 40px;
+    svg {
+        cursor: pointer;
+    }
+    padding: 5px;
+}
+.animationSoundPlayClass {
+    animation: animationSoundPlay 400ms ease-out infinite;
+}
+
+@keyframes animationSoundPlay {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.1);
+    }
+}

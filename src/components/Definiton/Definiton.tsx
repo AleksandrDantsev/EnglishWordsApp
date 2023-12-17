@@ -23,9 +23,7 @@ type DefinitionType = {
 
 
 const Definiton:React.FC<CheckInputData> = memo((props) => {
-    console.log(props)
     const filterData = useMemo(() => props.data.meanings?.find((obj: Meanings) => obj["partOfSpeech"] == props.typeDef), [props.data, props.typeDef]);
-    console.log(filterData)
     return( 
         <Fragment>  
             {

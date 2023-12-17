@@ -8,7 +8,7 @@ interface IDefinitionWord {
 }
 
 const SideBarDescription: React.FC<IDefinitionWord> = ({information, setIsShowDefinitionBar}) => {
-
+    console.log(information)
     const closeDefinition = () => {
         setIsShowDefinitionBar(false);
     }
@@ -35,7 +35,7 @@ const SideBarDescription: React.FC<IDefinitionWord> = ({information, setIsShowDe
                 </svg>
             </span>
             <div className={st.sidebarWrapper}>
-                <Definiton typeDef={'adjactive'} data={information} typeSearch={"definition"} />
+                <Definiton typeDef={'adjective'} data={information} typeSearch={"definition"} />
                 <Definiton typeDef={'noun'} data={information} typeSearch={"definition"} />
                 <Definiton typeDef={'verb'} data={information} typeSearch={"definition"} />
                 <Definiton typeDef={'adverb'} data={information} typeSearch={"definition"} />

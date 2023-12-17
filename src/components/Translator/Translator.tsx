@@ -3,6 +3,7 @@ import st from "./Translator.module.scss";
 import axios from "axios";
 import Definiton from "../Definiton/Definiton";
 import { Phonetik, ArrayApiWord } from "./types";
+import AddToDictionaryButton from "../AddToDictionaryButton/AddToDictionaryButton";
 
 const Translator:React.FC = () => {
     const [wordSearch, setWordSearch] = useState<string>('');
@@ -38,12 +39,20 @@ const Translator:React.FC = () => {
         audio.play();
     }
 
+        const enterPressSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key == "Enter") {
+                e.preventDefault();
+                searchBtWord(e);
+            }
+        }
+        console.log(resultQuery)
     return(
         <div className={st.translator}>
             <div className={st.translator_inputRes}>
                 <div className={st.translator_form}>
                     <form>
-                        <input  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWordSearch(e.target.value)} 
+                        <input  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWordSearch(e.target.value)}
+                                onKeyDown={enterPressSearch} 
                                 value={wordSearch} 
                                 className={st.translator_word} 
                                 placeholder="Word" 
@@ -106,6 +115,7 @@ const Translator:React.FC = () => {
                 </Fragment>
             }
             </div>
+            {resultQuery && <AddToDictionaryButton data={resultQuery} />}
         </div>
     );
 }

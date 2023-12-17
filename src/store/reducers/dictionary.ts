@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit/react";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit/react";
 
 interface IWordInfo {
     word: string;
@@ -30,7 +30,6 @@ const dictionary = createSlice({
                 state.dictionaryList.push(action.payload);
             }
         },
-
     }
 });
 

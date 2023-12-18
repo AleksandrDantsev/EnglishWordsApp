@@ -30,6 +30,13 @@ const PlaySoundCard: React.FC<IAudioData> = ({audioString}) => {
         audio.onended = () => setIsSoundPlay(false);
     }
 
+    const pronuncietionCountry = () => {
+        const leng = ["us", "uk", "en", "au"];
+        for (let i = 0; i < leng.length; i++) {
+            if (wordPronunciation?.toLowerCase()?.includes(leng[i])) return leng[i];
+        }
+    }
+
     return(
         <Fragment>
         {   Boolean(wordPronunciation) &&
@@ -71,6 +78,9 @@ const PlaySoundCard: React.FC<IAudioData> = ({audioString}) => {
                         ></path>{" "}
                     </g>
                 </svg>
+                <span className={st.pronCountry}>
+                    {pronuncietionCountry()}
+                </span>
             </div>
         }
         </Fragment>

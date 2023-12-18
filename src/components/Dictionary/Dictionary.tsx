@@ -1,16 +1,15 @@
 import React, { useMemo, useState } from "react";
 import st from "./Dictionary.module.scss";
-import { useAppSelector } from "../../hooks/reduxToolkit";
 import DictionaryCard from "../DictionaryCard/DictionaryCard";
 import SelectDblClick from "../../hooks/selectDblClickText";
 
 const Dictionary: React.FC = () => {
     const [searchWordQueryDict, setSearchWordQueryDict] = useState<string>('');
-    const dictionaryList = useAppSelector(state => state.dictionary.dictionaryList);
     const [numberPage, setNumberPage] = useState<number>(0);
     const quantityWordsOnPage = 5;
+    const dictionaryList = JSON.parse(localStorage.getItem("dictionary")  || "[]");
+    console.log(dictionaryList)
 
-        console.log('render')
     const reverseDictArray = useMemo(() => {
         let array = [...dictionaryList];
         return array.reverse();

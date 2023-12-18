@@ -16,9 +16,8 @@ type TInitialState = {
 
 
 const initialState: TInitialState = {
-    dictionaryList: [],
+    dictionaryList: JSON.parse(localStorage.getItem("dictionary") || "[]"),
 }
-
 
 
 const dictionary = createSlice({
@@ -28,6 +27,7 @@ const dictionary = createSlice({
         addWordToDictionary(state, action) {
             if (!state.dictionaryList.find(el => el.word == action.payload.word)) {
                 state.dictionaryList.push(action.payload);
+                localStorage.setItem("dictionary", JSON.stringify(state.dictionaryList));
             }
         },
     }

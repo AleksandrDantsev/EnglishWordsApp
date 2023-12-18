@@ -12,7 +12,7 @@ const Translator:React.FC = () => {
     const [loadingAnimation, setLoadingAnimation] = useState<boolean>(false);
     const [notfoundError, setNotFoundError] = useState<boolean>(false);
 
-    const searchBtWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const searchBtWord = async (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
         e.preventDefault();
         setLoadingAnimation(true);
         setWordSearch('');
@@ -65,7 +65,7 @@ const Translator:React.FC = () => {
                         <span className={st.foundedWord}>{resultQuery.word}</span>
                         <ul  className={st.listenWord}>
                             {
-                                audioString.map((el: Phonetik, id:number) => <li key={el["text"] + id}>
+                                audioString.map((el: Phonetik, id:number) => <li key={el.audio + id}>
                                 <span key={el["text"]} className={st.transcription}> {`[ ${el["text"] || ''} ]`} 
                                 <span className={st.countryPron}>{el.audio.endsWith("us.mp3") ? "us" : el.audio.endsWith("uk.mp3") ? 'uk' : "au"  }</span> </span>
                                 <svg className={st.svgAudio} id={String(id)} onClick={playAudio} 

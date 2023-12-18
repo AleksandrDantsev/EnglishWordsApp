@@ -2,6 +2,7 @@ import React, { memo, useState , useEffect} from "react";
 import st from "./AddToDictionaryButton.module.scss";
 import { addWordToDictionary } from "../../store/reducers/dictionary";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxToolkit";
+import { Phonetik } from "../Translator/types";
 
 interface IDataFromTranslator {
     data: TInfoMeanings;
@@ -9,8 +10,8 @@ interface IDataFromTranslator {
 
 type TInfoMeanings = {
     word: string;
-    phonetic: string;
-    phonetics: [];
+    phonetic?: string;
+    phonetics: Phonetik[];
     meanings: [];
 }
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState, Fragment, lazy } from "react";
 import axios from "axios";
 import st from "./selectDblClickText.module.scss";
-import PlaySoundCard from "../UI/PlaySoundCard/PlaySoundCard";
+const PlaySoundCard = lazy(() => import("../UI/PlaySoundCard/PlaySoundCard"));
 
 
 type IAudioData = {
@@ -9,45 +9,33 @@ type IAudioData = {
     audio: string;
 }
 
+interface IInputDataWord {
+    word: string;
+    phonetic?: string;
+    phonetics: Array<{
+        text?: string;
+        audio?: string;
+    }>
+}
+
 const SelectDblClick: React.FC = () => {
     const [word, setWord] = useState<string>('');
-    const [position, setPosition] = useState<{x: string, y: string}>({x: '', y: ''});
-    const [data, setData] = useState<any>();
+    const [position, setPosition] = useState<{x: number, y: number}>({x: 0, y: 0});
+    const [data, setData] = useState<IInputDataWord>();
+    const [isActivePanel, setIsActivePanel] = useState<boolean>(false);
     const [audioString, setAudioString] = useState<IAudioData[]>([]);
-
-    useEffect(() => {
-        function getSelectionWord(e) {
-            setPosition({x: e.clientX, y: e.clientY});
-            if (window.getSelection()) {
-                let select = window.getSelection();
-                setWord(select!.toString().toLowerCase().trim());
-            }
-        }
-
-        function removePanelHint(e: React.MouseEvent<HTMLElement | HTMLAnchorElement>) {
-            if (!((e.target as HTMLElement).closest(st.panelPronWord))) {
-                setWord('');
-            }
-        }
-
-        document.addEventListener('click', () => removePanelHint());
-        document.addEventListener('dblclick', getSelectionWord);
-        return () => {
-            document.removeEventListener('dblclick', getSelectionWord);
-            document.removeEventListener('click', () => removePanelHint())
-        }
-    }, [word])
 
     useEffect(() => {
         (async () => {
             try {
                 await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-                    .then(data => {
+                .then(data => {
                         setData(data.data[0]);
                         setAudioString(data.data[0].phonetics);
                     })
                     .catch(() => {
-                        console.log("error1")
+                        setData(undefined);
+                        setAudioString([]);
                     });
             }
             catch(err) {
@@ -56,19 +44,53 @@ const SelectDblClick: React.FC = () => {
         })();
     }, [word])
 
-    
-    console.log(word)
+    useEffect(() => {
+        function getSelectionWord(e: any) {
+            if (window.getSelection()!.toString().length > 2) {
+                let select = window.getSelection();
+                setPosition({x: e.clientX, y: e.clientY});
+                setIsActivePanel(true);
+                setWord(select!.toString().toLowerCase().trim());
+            }
+        }
+
+        function removePanelHint(e: any) {
+            e.stopPropagation();
+            const target = e.target as HTMLElement;
+            if (!(target.closest(st.panelPronWord))) {
+                setIsActivePanel(false);
+            }
+        }
+
+        document.addEventListener('click', removePanelHint);
+        document.addEventListener('dblclick', getSelectionWord);
+
+        return () => {
+            document.removeEventListener('click', removePanelHint)
+            document.removeEventListener('dblclick', getSelectionWord);
+        }
+    }, [])
+
     return (
      <Fragment>
-         {word && 
+         {isActivePanel && 
          <div className={st.panelPronWord} style={{left: position.x + "px", top: position.y + "px"}}>
             <div className={st.wrapper}>
-                <div className={st.transcription}>
-                    {data?.phonetic}
-                </div>
-                <PlaySoundCard audioString={audioString} />
+                {
+                    audioString.length > 0 || Boolean(data?.phonetic) ?
+                    <Fragment>
+                        {
+                        Boolean(data?.phonetic) &&
+                        <div className={st.transcription}>
+                            <span>{data?.phonetic}</span> 
+                        </div>
+                        }
+                    <PlaySoundCard audioString={audioString} />
+                    </Fragment>
+                    : <div className={st.notFound}>Not found</div>
+                }
             </div>
-         </div>
+        </div>
          }
      </Fragment>
         

@@ -1,7 +1,6 @@
-import React, {useState, useRef, Fragment, useEffect} from "react";
+import React, {useState, Fragment, useEffect} from "react";
 import st from "./FlashCards.module.scss";
 import ButtonFlashCard from "../../UI/ButtonFlashCard/ButtonFlashCard";
-import { useAppSelector } from "../../hooks/reduxToolkit";
 import axios from "axios";
 import Definiton from "../Definiton/Definiton";
 import { Phonetik } from "../Translator/types";
@@ -11,9 +10,9 @@ import { addWordToDictionary } from "../../store/reducers/dictionary";
 const FlashCards: React.FC = () => {
     const [countCard, setCountCard] = useState<number>(0);
     const [stateCard, setStateCard] = useState<string>('');
-    const queueCard = useAppSelector(state => state.flashcards.listCard);
     const [inputWord, setInputWord] = useState<string>('');
     const [serverWordInfo, setServerWordInfo] = useState<any>();
+    const queueCard = JSON.parse(localStorage.getItem("flashCards") || "[]");
     const dispatch = useAppDispatch();
 
     const playPronounceWord = () => {

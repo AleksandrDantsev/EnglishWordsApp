@@ -9,6 +9,11 @@
     animation: animationSoundPlay 400ms ease-out infinite;
 }
 
+.pronCountry {
+    font-size: 13px;
+    color: rgb(36, 36, 36);
+}
+
 @keyframes animationSoundPlay {
     0%{
         transform: scale(1);

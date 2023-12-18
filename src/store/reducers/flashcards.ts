@@ -13,7 +13,7 @@ type list = {
 }
 
 const initialState: list = {
-    listCard: [],
+    listCard: JSON.parse(localStorage.getItem("flashCards") || "[]"),
 }
 
 const flashcards = createSlice({
@@ -22,7 +22,8 @@ const flashcards = createSlice({
     reducers: {
         addFlasCard(state, action) {
             if (!state.listCard.find((el: FlashCardList) => el.word == action.payload.word)) {
-                state.listCard.push(action.payload)
+                state.listCard.push(action.payload);
+                localStorage.setItem("flashCards", JSON.stringify(state.listCard));
             }
         }
     }

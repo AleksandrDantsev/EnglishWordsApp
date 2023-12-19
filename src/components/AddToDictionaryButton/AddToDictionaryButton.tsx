@@ -25,7 +25,8 @@ const AddToDictionaryButton:React.FC<IDataFromTranslator> = memo(({data}) => {
     }, [data])
 
     const addToDictionary = () => {
-        dispatch(addWordToDictionary(data));
+        const date = new Date().toLocaleDateString();
+        dispatch(addWordToDictionary({...data, date}));
         setIsAddedDict(true);
     } 
 

@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit/react";
+import { createSlice } from "@reduxjs/toolkit/react";
 
 interface IWordInfo {
     word: string;
     phonetic: string;
     phonetics: [];
+    date: string;
     meanings: TDefinition[];
 }
 type TDefinition = {

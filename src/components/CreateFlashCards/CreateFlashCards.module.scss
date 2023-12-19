@@ -105,6 +105,13 @@
     box-shadow: 0 0 10px 0 rgb(129, 129, 129);
 }
 
+.navBarPhotos {
+    position: fixed;
+    bottom: 20px;
+    right: 35px;
+    padding: 5px 15px;
+}
+
 .imgPazzleUnit {
     display: flex;
     align-content: center;

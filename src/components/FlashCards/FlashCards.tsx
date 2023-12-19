@@ -20,9 +20,6 @@ const FlashCards: React.FC = () => {
         if (serverWordInfo!.phonetics.find((el: Phonetik) => el.audio != '')) {
             new Audio(serverWordInfo!.phonetics.filter((el: Phonetik) => el.audio != '')[0].audio).play();
         }
-        console.log('d')
-        console.log(serverWordInfo)
-        console.log(queueCard)
     }
 
     useEffect(() => {

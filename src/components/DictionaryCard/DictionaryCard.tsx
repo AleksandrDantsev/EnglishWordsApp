@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo, Fragment } from "react";
+import React, { useState, memo, Fragment } from "react";
 import st from "./DictionaryCard.module.scss";
 import SideBarDescription from "../SideBarDescription/SideBarDescription";
 import PlaySoundCard from "../../UI/PlaySoundCard/PlaySoundCard";
@@ -9,10 +9,11 @@ interface IDictCard {
     audio: Array<{ audio: string }>;
     phonetic: string;
     definition: string;
+    date: string;
     allInfoAboutWord: any;
 }
 
-const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, definition, allInfoAboutWord }) => {
+const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, definition, allInfoAboutWord, date }) => {
         
         const [isShowDefinitionBar, setIsShowDefinitionBar] = useState<boolean>(false);
 
@@ -27,6 +28,7 @@ const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, defin
                 <div className={st.dictioanryCard}>
                     <div className={st.wordTitle}>
                         <div className={st.word} onClick={showDefinitionWordHover}>{word}</div>
+                        <div className={st.dictionaryDate}>{date}</div>
                         {phonetic && <div className={st.transcription}>{phonetic}</div>}
                     </div>
                     <div className={st.phonetics}>

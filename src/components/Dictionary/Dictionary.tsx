@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import st from "./Dictionary.module.scss";
 import DictionaryCard from "../DictionaryCard/DictionaryCard";
 import SelectDblClick from "../../hooks/selectDblClickText";
+import PaginationCard from "../../UI/PaginationCard/PaginationCard";
 
 const Dictionary: React.FC = () => {
     const [searchWordQueryDict, setSearchWordQueryDict] = useState<string>('');
@@ -12,6 +13,7 @@ const Dictionary: React.FC = () => {
 
     const reverseDictArray = useMemo(() => {
         let array = [...dictionaryList];
+        console.log(array)
         return array.reverse();
     }, [dictionaryList])
     
@@ -22,26 +24,19 @@ const Dictionary: React.FC = () => {
         console.log(searchWordQueryDict)
     }
 
-    const lengthArrayWords = new Array((Math.ceil(reverseDictArray.length / quantityWordsOnPage))).fill(0).map((el, id: number) => el = String(id));
-    
-    const setPagePagination = (e: React.MouseEvent<HTMLUListElement>) => {
-        const targetLI = e.target as HTMLLIElement;
-        if (targetLI.tagName == "LI" && targetLI.textContent) {
-            setNumberPage(Number(targetLI.textContent));
-        }
-    }
-    
-    
-   
-
 
     return(
         <div className={st.wrapperDictionary}>
             <SelectDblClick />
-            <input className={st.inputSearcWord} placeholder="Search" onInput={searchShangeInput} type="text" />
+            <div className={st.topLineDictionary}>
+                <input className={st.inputSearcWord} placeholder="Search" onInput={searchShangeInput} type="text" />
+                <div className={st.quantityWords}><span>Words: {dictionaryList.length}</span></div>
+            </div>
             <div className={st.dictionaryCards}>
                 {
-                (queryWord ? queryWord : reverseDictArray.slice((numberPage * quantityWordsOnPage), (numberPage * quantityWordsOnPage) + quantityWordsOnPage)).map(el => <DictionaryCard key={el.word} word={el.word} 
+                (queryWord ? queryWord : reverseDictArray.slice((numberPage * quantityWordsOnPage), (numberPage * quantityWordsOnPage) + quantityWordsOnPage))
+                                                            .map(el => <DictionaryCard key={el.word} word={el.word} 
+                                                            date={el.date}
                                                             phonetic={el.phonetic} 
                                                             audio={el.phonetics} 
                                                             definition={el.meanings[0].definitions[0].definition}
@@ -50,12 +45,10 @@ const Dictionary: React.FC = () => {
                 }
             </div>
             {
-                (reverseDictArray.length > 5 && !queryWord)  &&
-            <div className={st.nav}>
-                <ul onClick={setPagePagination} className={st.navElems}>
-                    {lengthArrayWords.map(el => <li className={numberPage == +el ? st.activePage : ''} key={el}>{el}</li>)}
-                </ul>
-            </div>
+            (reverseDictArray.length > 5 && !queryWord)  && <PaginationCard quantityWordsOnPage={quantityWordsOnPage} 
+                                                                            setNumberPage={setNumberPage} 
+                                                                            numberPage={numberPage} 
+                                                                            quantityElems={reverseDictArray.length} />
             }
         </div>
     );

@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import st from "./CreateFlashCards.module.scss";
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxToolkit";
+import { useAppDispatch } from "../../hooks/reduxToolkit";
 import { addFlasCard } from "../../store/reducers/flashcards";
+import PaginationCard from "../../UI/PaginationCard/PaginationCard";
 
 const KEY = "468Q8bMOgOGEE83ah-aDyPEulZLkL2xJoCUTexnRBFs";
 
@@ -12,6 +13,12 @@ type FlashCardList = {
     description: string;
 };
 
+type TSearchCatPhoto = {
+    urls: {
+        regular: string;
+    };
+}
+
 
 const CreateFlashCards:React.FC = () => {
     const [arrayImages, setArrayImages] = useState<string[]>([]);
@@ -19,29 +26,47 @@ const CreateFlashCards:React.FC = () => {
     const [infoForm, setInfoForm] = useState<FlashCardList>({word: '', url: '', description: ''});
     const [isAddedWord, setIsAddedWord] = useState<boolean>(false);
     const [isWordNotFound, setIsWordNotFound] = useState(false);
+    const [numberPage, setNumberPage] = useState<number>(1);
     const dispatch = useAppDispatch();
-    const lstFLC = useAppSelector(state => state.flashcards.listCard);
+    
 
-    const getQueryInput = async (e: React.FocusEvent<HTMLInputElement>) => {
-        const target = e.target as HTMLInputElement;
+
+    const getQueryInput = async () => {
+        setIsWordNotFound(false);
         try {
-            const word = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${target.value.toLowerCase().trim()}`)
+            const word = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${infoForm.word.toLowerCase().trim()}`)
             .then(data => data.data[0]);
             if (word) {
-                setIsWordNotFound(false);
-                await axios.get(`https://api.unsplash.com/search/collections/?client_id=${KEY}&query=${target.value.toLowerCase()}`)
-                .then(data => {
-                    setArrayImages(data.data.results.filter((el: any) => el.preview_photos).map((el) => el?.preview_photos).flat().map((el) => el?.urls?.regular));
-                })
-                .catch(() => console.log("error search"))
-                setIsAddedWord(false);
+                getPictures();
+                setNumberPage(1);
+                console.log("rer")
             }
+            setIsAddedWord(false);
         }
         catch(err) {
             setIsWordNotFound(true);
         }
 
     }
+
+    const getPictures = async () => {
+        try {
+            console.log(infoForm.word)
+            await axios.get(`https://api.unsplash.com/search/photos?per_page=12&page=${numberPage}&query=${infoForm.word.toLowerCase().trim()}&client_id=${KEY}`)
+            .then(data => {
+                setArrayImages(data.data.results.map((el: TSearchCatPhoto) => el.urls.regular))
+                console.log(arrayImages)
+            })
+            .catch(() => console.log("error search"))
+        }
+        catch(err) {
+            console.log("err")
+        }
+        }
+    
+    useEffect(() => {
+        if (arrayImages.length) getPictures();
+    }, [numberPage])
 
     const choisePhotoName = (e: React.MouseEvent<HTMLImageElement>) => {
         const target = e.target as HTMLImageElement;
@@ -69,7 +94,6 @@ const CreateFlashCards:React.FC = () => {
         setInfoForm({word: '', url: '', description: ''});
         setIsAddedWord(true);
         setChoiseImg('');
-        console.log(lstFLC)
     }
 
     const deployPhotos = useMemo(() => {
@@ -79,7 +103,7 @@ const CreateFlashCards:React.FC = () => {
                 <img className={choiseImg == el ? st.activeImage : (Boolean(choiseImg) ? st.blurImage : '')} src={el} alt="Image" />
             </div>)
             );
-    }, [arrayImages, choiseImg]);
+    }, [arrayImages, choiseImg, numberPage]);
 
     
     return(
@@ -93,7 +117,12 @@ const CreateFlashCards:React.FC = () => {
                     </div> : 
                     (arrayImages.length > 0 && deployPhotos) 
                 }
-                
+                {
+                arrayImages.length > 0 && 
+                <div className={st.navBarPhotos}>
+                    <PaginationCard quantityWordsOnPage={12} setNumberPage={setNumberPage} numberPage={numberPage} quantityElems={60} type={"photo"}/>
+                </div>
+                }
             </div>
             <div className={st.form}>
                 <form>

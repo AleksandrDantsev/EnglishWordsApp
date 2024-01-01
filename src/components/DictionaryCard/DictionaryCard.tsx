@@ -34,6 +34,7 @@ const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, defin
                     <div className={st.phonetics}>
                         <div className={st.def}>{definition}</div>
                         <PlaySoundCard audioString={audio} />
+                        <div className={st.deleteWord}>x</div>
                     </div>
                 </div>
             </Fragment>

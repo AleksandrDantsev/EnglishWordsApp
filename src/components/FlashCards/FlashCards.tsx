@@ -1,4 +1,4 @@
-import React, {useState, Fragment, useEffect} from "react";
+import React, {useState, Fragment, useEffect, useMemo} from "react";
 import st from "./FlashCards.module.scss";
 import ButtonFlashCard from "../../UI/ButtonFlashCard/ButtonFlashCard";
 import axios from "axios";
@@ -12,11 +12,10 @@ const FlashCards: React.FC = () => {
     const [stateCard, setStateCard] = useState<string>('');
     const [inputWord, setInputWord] = useState<string>('');
     const [serverWordInfo, setServerWordInfo] = useState<any>();
-    const queueCard = JSON.parse(localStorage.getItem("flashCards") || "[]");
+    const queueCard = useMemo(() => JSON.parse(localStorage.getItem("flashCards") || "[]").sort(() => Math.random() - 0.5), [localStorage.getItem("flashCards")]);
     const dispatch = useAppDispatch();
 
     const playPronounceWord = () => {
-        
         if (serverWordInfo!.phonetics.find((el: Phonetik) => el.audio != '')) {
             new Audio(serverWordInfo!.phonetics.filter((el: Phonetik) => el.audio != '')[0].audio).play();
         }
@@ -39,14 +38,15 @@ const FlashCards: React.FC = () => {
                 setInputWord('');
                 setStateCard('');
                 setCountCard((prev: number) => prev + 1);
-            }, 1000)
+            }, 700)
         }
     }
 
     const passCard = () => {
-        console.log(serverWordInfo)
-        if (inputWord.toLowerCase() == queueCard[countCard].word) {
+        console.log(serverWordInfo, queueCard[countCard].word)
+        if (inputWord.toLowerCase().trim() === queueCard[countCard].word.toLowerCase().trim()) {
             setStateCard("right");
+            setTimeout(playPronounceWord, 400);
         } 
         else {
             setStateCard("mistake");
@@ -166,7 +166,11 @@ const FlashCards: React.FC = () => {
             {
             ((stateCard != "right" && stateCard != "show") || stateCard == "show") &&  
             <div className={st.falschCard_inputWord}>
-                <input onInput={(e) => setInputWord((e.target as HTMLInputElement).value)} onClick={clearInputClick} value={inputWord} type="text" placeholder="answer" />
+                <input  onInput={(e) => setInputWord((e.target as HTMLInputElement).value)} 
+                        onClick={clearInputClick} 
+                        value={inputWord} 
+                        type="text" 
+                        placeholder="answer" />
                 <div className={st.hint}>{queueCard[countCard].description}</div>
             </div>
             }

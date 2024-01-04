@@ -16,6 +16,8 @@ const initialState: list = {
     listCard: JSON.parse(localStorage.getItem("flashCards") || "[]"),
 }
 
+
+
 const flashcards = createSlice({
     name: 'dictionary',
     initialState, 

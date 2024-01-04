@@ -46,9 +46,6 @@ const Header: React.FC = () => {
                         <li>
                             <Link to="/">Your statistic</Link>
                         </li>
-                        <li>
-                            <Link to="/">Your statistic</Link>
-                        </li>
                     </ul>
                 </div>
             </div>

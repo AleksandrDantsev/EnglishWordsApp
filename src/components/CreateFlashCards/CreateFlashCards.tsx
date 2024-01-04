@@ -105,6 +105,11 @@ const CreateFlashCards:React.FC = () => {
             );
     }, [arrayImages, choiseImg, numberPage]);
 
+    const qunatityElemsInSearch = () => {
+        if (arrayImages.length < 12 && numberPage == 0) return 12;
+        return +numberPage * 12 + 12 < 61 ? +numberPage * 12 + 12 : 60;
+    }
+
     
     return(
         <div className={arrayImages.length == 0 ? st.createFlashcardWrapper + " " + st.widthMainConteiner :  st.createFlashcardWrapper}>
@@ -120,7 +125,11 @@ const CreateFlashCards:React.FC = () => {
                 {
                 arrayImages.length > 0 && 
                 <div className={st.navBarPhotos}>
-                    <PaginationCard quantityWordsOnPage={12} setNumberPage={setNumberPage} numberPage={numberPage} quantityElems={60} type={"photo"}/>
+                    <PaginationCard quantityWordsOnPage={12} 
+                                    quantityElems={qunatityElemsInSearch()} 
+                                    numberPage={numberPage} 
+                                    setNumberPage={setNumberPage} 
+                                    type={"photo"}/>
                 </div>
                 }
             </div>

@@ -2,7 +2,8 @@ import React, { useState, memo, Fragment } from "react";
 import st from "./DictionaryCard.module.scss";
 import SideBarDescription from "../SideBarDescription/SideBarDescription";
 import PlaySoundCard from "../../UI/PlaySoundCard/PlaySoundCard";
-
+import { useAppDispatch } from "../../hooks/reduxToolkit";
+import { removeWordFromDictionary } from "../../store/reducers/dictionary";
 
 interface IDictCard {
     word: string;
@@ -14,11 +15,16 @@ interface IDictCard {
 }
 
 const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, definition, allInfoAboutWord, date }) => {
-        
+        const dispatch = useAppDispatch();
         const [isShowDefinitionBar, setIsShowDefinitionBar] = useState<boolean>(false);
 
         const showDefinitionWordHover = () => {
             setIsShowDefinitionBar(true);
+        }
+
+        const removeWord = () => {
+            console.log(word)
+            dispatch(removeWordFromDictionary(word))
         }
 
         return (
@@ -34,7 +40,7 @@ const DictionaryCard: React.FC<IDictCard> = memo(({ word, audio, phonetic, defin
                     <div className={st.phonetics}>
                         <div className={st.def}>{definition}</div>
                         <PlaySoundCard audioString={audio} />
-                        <div className={st.deleteWord}>x</div>
+                        <div onClick={removeWord} className={st.deleteWord}>x</div>
                     </div>
                 </div>
             </Fragment>

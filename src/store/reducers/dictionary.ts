@@ -31,9 +31,16 @@ const dictionary = createSlice({
                 localStorage.setItem("dictionary", JSON.stringify(state.dictionaryList));
             }
         },
+
+        removeWordFromDictionary(state, action) {
+            let result = JSON.parse(localStorage.getItem("dictionary") || "[]")
+                        .filter((el: IWordInfo) => el.word != action.payload)
+            state.dictionaryList = result;
+            localStorage.setItem("dictionary", JSON.stringify(result));
+        }
     }
 });
 
 
-export const { addWordToDictionary } = dictionary.actions;
+export const { addWordToDictionary, removeWordFromDictionary } = dictionary.actions;
 export default dictionary.reducer;

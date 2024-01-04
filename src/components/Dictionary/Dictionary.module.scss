@@ -1,4 +1,6 @@
 .wrapperDictionary {
+    display: flex;
+    flex-direction: column;
     width: 85%;
     margin: 40px auto;
 }
@@ -33,3 +35,7 @@
     box-shadow: 0 0 6px 0 #d1d1d1;
 }
 
+.emptyDict {
+    align-self: center;
+    text-align: center;
+}

@@ -11,7 +11,7 @@ interface IInfoPagination {
 }
 
 const PaginationCard: React.FC<IInfoPagination> = ({numberPage, quantityElems, setNumberPage, quantityWordsOnPage, type}) => {
-
+    console.log(quantityElems, quantityWordsOnPage)
     const lengthArrayWords = new Array((Math.ceil(quantityElems / quantityWordsOnPage))).fill(0)
                             .map((el, id: number) => type ? el = String(id +1) : el = String(id));
     

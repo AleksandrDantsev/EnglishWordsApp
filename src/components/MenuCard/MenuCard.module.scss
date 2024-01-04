@@ -1,8 +1,9 @@
 .menuCard {
-    width: calc(90% / 3);
+    width: calc(90% / 2);
+    height: calc(70vh / 2);
     margin: 10px 1%;
     min-height: 220px;
-    box-shadow: 0 1px 11px 0 rgba(216, 216, 216, 0.788);
+    box-shadow: 0 1px 11px 0 rgba(190, 190, 190, 0.788);
     transition-duration: 150ms;
     cursor: pointer;
     &:hover {
@@ -15,6 +16,8 @@
         width: 100%;
     }
 }
+
+
 .menuCard_wrapper {
     text-align: center;
     color: #333333;

@@ -1,7 +1,7 @@
 .homeConteiner {
     width: 65%;
     margin: 60px auto;
-    height: 450px;
+    height: 500px;
 }
 .home {
     display: flex;
@@ -11,29 +11,32 @@
 .home_getStarted {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-around;
-    width: 40%;
+    width: 100%;
     height: 90%;
     margin-right: 3%;
     span {
         display: block;
+        text-align: center;
+        text-transform: capitalize;
         text-shadow: 0 1px 2px rgb(77, 77, 77);
         font-weight: 600;
     }
 }
 
 .home_second_title { 
-    color: #c91111;
-    font-size: 2.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 4rem;
 }
 
 .home_three_title {
-    color: rgb(34, 34, 34);
-    font-size: 2.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 4rem;
 }
 
 .home_first_title {
-    color: #12538f;
+    color: rgb(255, 255, 255);
     font-size: 4rem;
 }
 
@@ -41,11 +44,14 @@
     display: flex;
     align-items: center;
     height: 100%;
-    width: 58%;
 }
 .home_picture {
-    width: 100%;
-    height: auto;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0.6;
     img {
         width: 100%;
         height: auto;
@@ -54,13 +60,21 @@
     }
 }
 
+.buttonLinkToAnotherPage {
+    display: inline-block;
+    width: 40%;
+    a, button {
+        display: block;
+        width: 100%;
+    }
+}
+
 .home_bt_gt_st {
-    width: 60%;
+    width: 50%;
+    margin: 0 auto;
     height: 55px;
     min-width: 150px;
-    margin-top: 15px;
     background-color: #fff;
-    border: solid 1px rgb(58, 58, 58);
     transition-duration: 200ms;
     letter-spacing: 1px;
     cursor: pointer;

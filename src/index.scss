@@ -26,6 +26,7 @@ main {
 main {
   flex-grow: 1;
   max-width: 1600px;
+  min-height: 100vh;
 }
 
 ::selection {

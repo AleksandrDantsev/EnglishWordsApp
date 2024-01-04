@@ -7,14 +7,18 @@ const HomePage:React.FC  = () => {
         <div className={st.homeConteiner}>
             <div className={st.home}>
                 <aside className={st.home_getStarted}>
-                    <span className={st.home_first_title}>Learn</span>
+                    <span className={st.home_first_title}>to Learn</span>
                     <span className={st.home_second_title}>English</span>
-                    <span className={st.home_three_title}>effectively</span>
-                    <Link to="menuApp"><button className={st.home_bt_gt_st} type="button">Get started</button></Link>
+                    <div className={st.buttonLinkToAnotherPage}>
+                        <Link to="menuApp">
+                            <button className={st.home_bt_gt_st} 
+                                    type="button">Get started</button>
+                        </Link>
+                    </div>
                 </aside>
                 <div className={st.home_image}>
                     <div className={st.home_picture}>
-                        <img src={"./pictures/flagEngland.jpg"} alt="flag" />
+                        <img src={"https://w.forfun.com/fetch/5d/5d6298c47b6b2cb58ed69959eeb83e5a.jpeg"} alt="flag" />
                     </div>
                 </div>
             </div>

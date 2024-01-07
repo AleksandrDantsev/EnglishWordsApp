@@ -1,11 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy } from "react";
 import { Fragment } from 'react'
 import './App.scss'
 import Layout from './components/Layout/Layout';
 import HomePage from './components/HomePage/HomePage';
-// const Menu = lazy(() => import("./components/Menu/Menu"));
-// const Translator = lazy(() => import("./components/Translator/Translator"));
 import Menu from './components/Menu/Menu';
 import Translator from './components/Translator/Translator';
 import FlashCards from './components/FlashCards/FlashCards';

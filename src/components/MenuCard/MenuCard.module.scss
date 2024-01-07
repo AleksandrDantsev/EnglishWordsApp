@@ -19,6 +19,10 @@
 
 
 .menuCard_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
     text-align: center;
     color: #333333;
     

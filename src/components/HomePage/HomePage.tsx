@@ -18,7 +18,7 @@ const HomePage:React.FC  = () => {
                 </aside>
                 <div className={st.home_image}>
                     <div className={st.home_picture}>
-                        <img src={"https://w.forfun.com/fetch/5d/5d6298c47b6b2cb58ed69959eeb83e5a.jpeg"} alt="flag" />
+                        <img src={"./public/pictures/back.jpeg"} alt="" />
                     </div>
                 </div>
             </div>
